@@ -68,7 +68,7 @@ function login() {
 	})
 		.then(response => {
 			if (!response.ok) {
-				throw new Error('Registration failed');
+				throw new Error('Login failed');
 			}
 
 			return response.text(); // Treat the response as text
@@ -79,6 +79,6 @@ function login() {
 		})
 		.catch(error => {
 			// Handle failure
-			errorUserDiv.innerHTML = 'Registration failed';
+			errorUserDiv.innerHTML = 'Login failed';
 		});
 }        

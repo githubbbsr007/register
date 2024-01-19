@@ -24,8 +24,8 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("username");
-		String password = req.getParameter("password");// Ui Password
+		String userName = req.getParameter("username");// UI Username
+		String password = req.getParameter("password");// UI Password
 		Connection connection = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 			String sql = "Select * from students where username=?";
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, userName);
-			rs = stmt.executeQuery();
+			rs = stmt.executeQuery();//database result and assign
 			if (rs.next()) {
 				if (password.equalsIgnoreCase(rs.getString("password"))) {
 					writer.write("<h1>login success welcome to home page<h1>");
