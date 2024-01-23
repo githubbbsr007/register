@@ -2,6 +2,7 @@ package register.ak.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,12 +30,12 @@ public class ViewUserServlet extends HttpServlet {
 		Statement stmt = null;
 		ResultSet result = null;
 		try {
-			PrintWriter writer=resp.getWriter();
+			PrintWriter writer = resp.getWriter();
 			// Start HTML document and create the table header
-	        writer.println("<html><head><title>User Data</title></head><body>");
-	        writer.println("<h2>User Data</h2>");
-	        writer.println("<table border='1'>");
-	        writer.println("<tr><th>Name</th><th>Password</th><th>Email</th></tr>");
+			writer.println("<html><head><title>User Data</title></head><body>");
+			writer.println("<h2>User Data</h2>");
+			writer.println("<table border='1'>");
+			writer.println("<tr><th>Name</th><th>Password</th><th>Email</th><th>delete</th></tr>");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = CommonUtility.getJdbcConnection();
 			stmt = con.createStatement();
@@ -44,22 +45,24 @@ public class ViewUserServlet extends HttpServlet {
 				String name = result.getString("username");
 				String password = result.getString("password");
 				String email = result.getString("email");
+				String encodedName = URLEncoder.encode(name, "UTF-8");
 				// Create a table row with the data
-                writer.println("<tr><td>" + name + "</td><td>" + password + "</td><td>" + email + "</td></tr>");
+				writer.println("<tr><td>" + name + "</td><td>" + password + "</td><td>" + email + "</td>"
+						+ "<td><a href='/register/delete'>delete</a></td>"+"</tr>");
 			}
 			// Close the table and HTML document
-            writer.println("</table></body></html>");
+			writer.println("</table></body></html>");
 			writer.close();
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			CommonUtility.close(con, null, result);
 			try {
-			
-				if(stmt!=null)
-				stmt.close();
+
+				if (stmt != null)
+					stmt.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
