@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,9 @@ public class LoginServlet extends HttpServlet {
 			rs = stmt.executeQuery();//database result and assign
 			if (rs.next()) {
 				if (password.equalsIgnoreCase(rs.getString("password"))) {
-					writer.write("<h1>login success welcome to home page<h1>");
+					//writer.write("<h1>login success welcome to home page<h1>");
+					RequestDispatcher rd= req.getRequestDispatcher("/jsp/home.jsp");
+					rd.forward(req, resp);
 				}else {
 					writer.write("<h1>invalid password<h1>");
 				}
