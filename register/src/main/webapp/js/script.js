@@ -81,4 +81,21 @@ function login() {
 			// Handle failure
 			errorUserDiv.innerHTML = 'Login failed';
 		});
-}        
+} 
+
+function loadContent(url) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url, true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				var dynamicContent = xhr.responseText;
+				document.getElementById('dynamic-content').innerHTML = dynamicContent;
+			} else {
+				console.error('API request failed with status: ' + xhr.status);
+			}
+		}
+	};
+	xhr.send();
+}
+       

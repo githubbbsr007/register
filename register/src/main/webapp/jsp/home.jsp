@@ -12,6 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Success</title>
 	<link rel="stylesheet" href="/register/css/home.css">
+	<script src="/register/js/script.js"></script>
 	<!-- Include SweetAlert CSS and JavaScript files -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
@@ -33,7 +34,7 @@
 		<div class="logout-button-container">
 			<!-- Add a cool log-out icon to the "Logout" button -->
 			<button id="logout-button" class="button"><i class="fas fa-sign-out-alt"></i> <a
-					href="/logout">Logout</a></button>
+					href="/register/logout">Logout</a></button>
 		</div>
 
 	</header>
@@ -41,7 +42,7 @@
 		<div class="sidebar">
 			<h3>Menu</h3>
 			<ul>
-				<li><a href="#" onclick="loadContent('/dashboard');" class="button"><i class="fas fa-chart-bar"></i>
+				<li><a href="#" onclick="loadContent('/register/jsp/dashboard.jsp');" class="button"><i class="fas fa-chart-bar"></i>
 						Dashboard</a></li>
 				<li><a href="#" onclick="loadContent('/visitorForm');" class="button"><i class="fas fa-users"></i>
 						Visitors Registration</a></li>
