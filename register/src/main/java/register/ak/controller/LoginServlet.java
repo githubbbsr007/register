@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import register.ak.commonutil.CommonUtility;
 
@@ -27,6 +28,9 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String userName = req.getParameter("username");// UI Username
 		String password = req.getParameter("password");// UI Password
+		HttpSession session=req.getSession();
+		String sessionUser=(String) session.getAttribute(userName);
+		if(sessionUser==null) {
 		Connection connection = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -40,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 			rs = stmt.executeQuery();//database result and assign
 			if (rs.next()) {
 				if (password.equalsIgnoreCase(rs.getString("password"))) {
+					session.setAttribute(userName, userName);
 					//writer.write("<h1>login success welcome to home page<h1>");
 					RequestDispatcher rd= req.getRequestDispatcher("/jsp/home.jsp");
 					rd.forward(req, resp);
@@ -55,6 +60,12 @@ public class LoginServlet extends HttpServlet {
 		} finally {
 			CommonUtility.close(connection, stmt, rs);
 			writer.close();
+		}
+		}else {
+			System.out.println("session user found");
+			//writer.write("<h1>login success welcome to home page<h1>");
+			RequestDispatcher rd= req.getRequestDispatcher("/jsp/home.jsp");
+			rd.forward(req, resp);
 		}
 	}
 
