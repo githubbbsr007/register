@@ -25,6 +25,6 @@ public class CommonUtility {
 	}
 	
 	public static Connection getJdbcConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/piresqure", "root", "root");		
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/developer1", "root", "root");		
 	}
 }

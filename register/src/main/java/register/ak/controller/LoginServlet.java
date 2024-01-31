@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = CommonUtility.getJdbcConnection();
-			String sql = "Select * from students where username=?";
+			String sql = "Select * from students1 where username=?";
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, userName);
 			rs = stmt.executeQuery();//database result and assign

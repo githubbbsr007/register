@@ -8,6 +8,23 @@
 <!DOCTYPE html>
 
 <head>
+<style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Success</title>
@@ -46,7 +63,7 @@
 						Dashboard</a></li>
 				<li><a href="#" onclick="loadContent('/visitorForm');" class="button"><i class="fas fa-users"></i>
 						Visitors Registration</a></li>
-				<li><a href="#" onclick="loadContent('/report');" class="button"><i class="fas fa-file-alt"></i>
+				<li><a href="#" onclick="loadContent('/register/jsp/report.jsp');" class="button"><i class="fas fa-file-alt"></i>
 						Report</a></li>
 				<li><a href="#" onclick="loadContent('/studentRegisterFrom');" class="button"><i
 							class="fas fa-graduation-cap"></i> Student Management</a></li>
@@ -76,7 +93,7 @@
 				<!-- Dynamic content will be loaded here -->
 			</div>
 		</div>
-	</div>
+	</div
 	<footer>
 		&copy; 2023 Piersqure. All rights reserved.
 	</footer>
