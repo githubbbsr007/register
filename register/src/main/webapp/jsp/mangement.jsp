@@ -33,7 +33,7 @@
 				<label for="dob">DOB</label>
 				<input type="date" id="DOB" name="DOB">
 			</div>
-			<button type="button" onclick="validateRegister()">save</button>
+			<button type="button" onclick="validatedStudentInfo()">save</button>
 			
 		</form>
 		<div id="msg">

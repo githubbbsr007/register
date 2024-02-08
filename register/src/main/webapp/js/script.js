@@ -98,4 +98,46 @@ function loadContent(url) {
 	};
 	xhr.send();
 }
+function validatedStudentInfo(){
+	var name = document.getElementById("name").value;
+	var address =document.getElementById("adress").value;
+	var emailId = document.getElementById("emailId").value;
+	var age = document.getElementById("age").value;
+	var dob  = document.getElementById("DOB").value;
+	var msgDiv =document.getElementById("msg")
+	if(name ==''|| address ==''|| emailId==''|| age =='' || dob == ''){
+		msgDiv.innerHTML = 'All values must be filled';
+		
+		return;
+		
+	}
+	var formData = new URLSearchParams();
+	formData.append('name', name);
+	formData.append('adress', address);
+	formData.append('emailId', emailId);
+	formData.append('age', age); 
+	formData.append('DOB', dob);
+	fetch('/register/savestudents', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded', // Set content type to form-urlencoded
+		},
+		body: formData.toString(), // Convert form data to string
+	})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Login failed');
+			}
+
+			return response.text(); // Treat the response as text
+		})
+		.then(data => {
+			// Handle success or failure
+			errorUserDiv.innerHTML = data;
+		})
+		.catch(error => {
+			// Handle failure
+			errorUserDiv.innerHTML = 'Login failed';
+		});
+}
        
